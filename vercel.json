@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "Frontend/vite.config.ts", "use": "@vercel/vite" },
+    { "src": "api/src/server.ts", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "api/src/server.ts" },
+    { "src": "/(.*)", "dest": "Frontend/dist/$1" }
+  ]
+}
