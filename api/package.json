@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc",
+    "prestart": "npm run build",
     "start": "node dist/server.js"
   },
   "author": "Barshat",
@@ -16,7 +17,6 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
-    
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.18.1",
     "serverless-http": "^4.0.0",
