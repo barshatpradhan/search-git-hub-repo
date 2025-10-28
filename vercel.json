@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "Frontend/vite.config.ts",
+      "src": "Frontend/package.json",
       "use": "@vercel/static-build"
     },
     {
