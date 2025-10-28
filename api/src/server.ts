@@ -37,6 +37,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import authRoutes from "./Routes/auth";
 import favoritesRoutes from "./Routes/favorites";
+import serverless from "serverless-http";
 
 dotenv.config();
 
@@ -74,3 +75,6 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
     console.log(`✅ Server running on port ${PORT}`);
 });
+
+// Export as a Vercel serverless function
+export const handler = serverless(app);
