@@ -1,11 +1,20 @@
 {
   "version": 2,
   "builds": [
-    { "src": "Frontend/vite.config.ts", "use": "@vercel/vite" },
-    { "src": "api/src/server.ts", "use": "@vercel/node" }
+    {
+      "src": "Frontend/vite.config.ts",
+      "use": "@vercel/static-build"
+    },
+    {
+      "src": "api/src/server.ts",
+      "use": "@vercel/node"
+    }
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "api/src/server.ts" },
     { "src": "/(.*)", "dest": "Frontend/dist/$1" }
-  ]
+  ],
+  "framework": "vite",
+  "buildCommand": "cd Frontend && npm run build",
+  "outputDirectory": "Frontend/dist"
 }
