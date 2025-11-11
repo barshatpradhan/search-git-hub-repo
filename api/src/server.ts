@@ -11,17 +11,31 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+
 // Middlewar
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://search-git-hub-repo.vercel.app',
+  'https://search-git-hub-repo-git-main-barshat-pradhans-projects.vercel.app',
+  // 'https://search-git-hub-repo.onrender.com'
+];
+
 app.use(cors({
-  origin: [
-    'https://search-git-hub-repo.vercel.app', // your deployed frontend
-    // 'https://search-git-hub-repo.onrender.com'
-    'http://localhost:5173' // local Vite dev
-  ],
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.log('Blocked by CORS:', origin);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
+
+
+
 
 app.use(express.json());
 
